@@ -1,16 +1,11 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import os
-from sklearn.metrics import mean_absolute_error
 import pydmd
-import backtrader as bt
-import yfinance as yf
-
-import backtrader.analyzers as btanalyzers
-from datetime import datetime
-import backtrader.feeds as btfeeds
 import math
+import streamlit as st
+
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 sym = pd.read_csv("DATA/nse50_sym.csv",header=None) 
 sym = sym[0].tolist()
@@ -93,26 +88,31 @@ def portfolio(i,max) :
         portfolio.append(cash)
 
     performace = (cash/1000000)*100
-    print(i," -->  PERFORMANCE :" , performace)
+    st.write(i," -->  PERFORMANCE :" , performace)
     return (portfolio,performace)
 
-max = 20
-port=[]
-perf=[]
-for i in range(2,max):
-    P = portfolio(i,max)
-    perf.append(P[0])
-    port.append(P[1])
 
-plt.figure()
-plt.plot(port)
-plt.xlabel("Number of days trained")
-plt.ylabel("Performance")
-plt.title("Performance of DMD different training days")
+st.title("BACK TESTING")
 
-plt.figure()
-plt.plot(perf[0])
-plt.xlabel("Working days Last 10 years")
-plt.ylabel("Porfolio value")
-plt.title("Portfolio value for 2 days trained")
-plt.show()
+max = st.slider("Performance for number of training days", 15, 50)
+
+
+if st.button('Calculate'):
+    port=[]
+    perf=[]
+    for i in range(2,max):
+        P = portfolio(i,max)
+        perf.append(P[0])
+        port.append(P[1])
+
+    #plot P[0] with title, x label and y label
+    st.write("Portfolio value for "+str(i) +" days trained")
+    st.info("X-axis: Working days Last 10 years")
+    st.info("Y-axis: Porfolio value")
+    st.line_chart(P[0])
+    st.line_chart(port)
+    st.success(f"MAX PERFORMANCE : {np.max(perf)}")
+    st.error(f"MIN PERFORMANCE : {np.min(perf)}")
+
+
+
