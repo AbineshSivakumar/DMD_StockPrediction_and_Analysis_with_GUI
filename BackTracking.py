@@ -100,17 +100,24 @@ max = st.slider("Performance for number of training days", 15, 50)
 if st.button('Calculate'):
     port=[]
     perf=[]
-    for i in range(2,max):
-        P = portfolio(i,max)
+    for i in range(2,max+1):
+        P = portfolio(i,max+1)
         perf.append(P[0])
         port.append(P[1])
 
     #plot P[0] with title, x label and y label
+    
+    st.title("Portfolio value for different training days")
+    st.info("X-axis: Number of days trained")
+    st.info("Y-axis: Performance")
+    st.line_chart(port)
+
+    st.title("Performance of DMD different training days")
     st.write("Portfolio value for "+str(i) +" days trained")
     st.info("X-axis: Working days Last 10 years")
     st.info("Y-axis: Porfolio value")
     st.line_chart(P[0])
-    st.line_chart(port)
+    
     st.success(f"MAX PERFORMANCE : {np.max(perf)}")
     st.error(f"MIN PERFORMANCE : {np.min(perf)}")
 
