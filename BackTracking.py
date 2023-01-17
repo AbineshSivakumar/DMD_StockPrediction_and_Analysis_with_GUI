@@ -12,12 +12,12 @@ from datetime import datetime
 import backtrader.feeds as btfeeds
 import math
 
-sym = pd.read_csv("DATA/nse100_SYM.csv",header=None) 
+sym = pd.read_csv("DATA/nse50_sym.csv",header=None) 
 sym = sym[0].tolist()
 SYM =[ i + ".NS" for i in sym]
 
 df = pd.DataFrame()
-matx = pd.read_csv("DATA/NSE100.csv",header=None) #VARIABLE 1
+matx = pd.read_csv("DATA/nse50.csv",header=None) #VARIABLE 1
 matx = pd.DataFrame(matx.transpose())
 matx = matx.fillna(0)
 
@@ -104,14 +104,20 @@ for i in range(2,max):
     perf.append(P[0])
     port.append(P[1])
 
+plt.figure()
 plt.plot(port)
 plt.xlabel("Number of days trained")
 plt.ylabel("Performance")
 plt.title("Performance of DMD different training days")
 
+plt.figure()
 plt.plot(perf[0])
 plt.xlabel("Working days Last 10 years")
 plt.ylabel("Porfolio value")
 plt.title("Portfolio value for 2 days trained")
+plt.show()
 
-plt.plot(portfolio)
+
+# plt.plot(portfolio)
+# plt.show()
+# plt.figure()
