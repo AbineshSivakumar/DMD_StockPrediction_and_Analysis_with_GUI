@@ -1,0 +1,5 @@
+streamlit==1.11.0
+numpy
+pandas
+matplotlib
+pydmd
