@@ -22,7 +22,7 @@ def dmd_pred_plot(dmd,diff,d_ind,top):
     # Find the indices of the top 5 elements
     dmode = dmd.modes[:,d_ind].real
     top_indices = np.argsort(dmode.real)[-top:]
-    st.info("RECOMMENDED STOCKS")
+    st.title("RECOMMENDED STOCKS")
     for i in top_indices:
         st.markdown(f"{symbol[i]} [{i}]")
     # Mark the indices on the plot
@@ -120,7 +120,7 @@ def dmd_pred(j,i,stock_name):
     pday9 = np.real(pred[:,-1])
 
     # Using st.write() to write the predictions and error in a tabular format
-    st.info(("ERROR & PREDICTIONS"))
+    st.title(("ERROR & PREDICTIONS"))
     data = {'Day': ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Day8', 'Day9'],
             'Prediction': [pday1[stock_ind], pday2[stock_ind], pday3[stock_ind], pday4[stock_ind], pday5[stock_ind], pday6[stock_ind], pday7[stock_ind], pday8[stock_ind], pday9[stock_ind]],
             'Error': [np.abs(day1[stock_ind]-pday1[stock_ind]), np.abs(day2[stock_ind]-pday2[stock_ind]), np.abs(day3[stock_ind]-pday3[stock_ind]), np.abs(day4[stock_ind]-pday4[stock_ind]), np.abs(day5[stock_ind]-pday5[stock_ind]), np.abs(day6[stock_ind]-pday6[stock_ind]), np.abs(day7[stock_ind]-pday7[stock_ind]), np.abs(day8[stock_ind]-pday8[stock_ind]), np.abs(day9[stock_ind]-pday9[stock_ind])]}
@@ -132,6 +132,7 @@ def dmd_pred(j,i,stock_name):
 
 
 st.title("Stock Price Prediction")
+st.info("This is a web app to predict the stock prices of the top 100 companies listed on the NYSE and NASDAQ")
 
 stock_exchange = ["nse50_sym", "nse100_SYM"]    
 index = st.selectbox("Select a Stock Exchange", stock_exchange)
