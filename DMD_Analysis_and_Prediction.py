@@ -139,17 +139,9 @@ index = st.selectbox("Select a Stock Exchange", stock_exchange)
 symbol, matx = readSymbol(index)
 sym = st.selectbox("Choose a Symbol", symbol)
 
-# input_3 = st.date_input("Enter a date:")
-# col1, col2 = st.columns(2)
-# from_date = col1.date_input("From:")
-# to_date = col2.date_input("To:")
-
 training = st.number_input("Training Set (in days)",step=1,min_value=0)
 value = st.slider("Result Comparison", min_value=0, max_value=9, value=3, step=1)
 top_stocks = st.number_input("How many stocks would you like us to recommend?",step=1,min_value=0)
-
-# pred_options = ["Next 5 days", "Next 10 days"]
-# predict = st.selectbox("Predict for",pred_options)
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
