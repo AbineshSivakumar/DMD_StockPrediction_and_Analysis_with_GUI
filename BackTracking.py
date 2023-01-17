@@ -116,8 +116,3 @@ plt.xlabel("Working days Last 10 years")
 plt.ylabel("Porfolio value")
 plt.title("Portfolio value for 2 days trained")
 plt.show()
-
-
-# plt.plot(portfolio)
-# plt.show()
-# plt.figure()
