@@ -33,7 +33,7 @@ def dmd_pred_plot(dmd,diff,d_ind,top):
     plt.ylabel("Performance")
     st.pyplot()
 
-def dmd_analysis(result_comparison,j,top=3,i=12) :
+def dmd_analysis(result_comparison,i,top=3,j=25) :
     mat = matx.iloc[:, -(i+j):-j]
     mat = mat.to_numpy()
 
@@ -148,7 +148,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 if st.button("Predict"):
     st.write(dmd_analysis(value,training,top_stocks))
-    st.write(dmd_pred(training,12,sym))
+    st.write(dmd_pred(25,training,sym))
 
 
 
